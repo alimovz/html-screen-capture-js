@@ -269,7 +269,8 @@ const getHtmlObject = (context: CaptureContext): HTMLElement => {
 		cssText += context.pseudoStyles.join('');
 		cssText += context.options.rulesToAddToDocStyle.join('');
 		style.appendChild(context.doc.createTextNode(cssText));
-		newHtml.children[0].appendChild(style);
+		//ZUNIT - commented this out
+		//newHtml.children[0].appendChild(style);
 	};
 	const newHtml = createNewHtml();
 	appendNewHead(newHtml);
