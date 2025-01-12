@@ -49,12 +49,14 @@ const getClasses = (domElm: Element): string[] => {
 const handleElmCss = (context: CaptureContext, domElm: Element, newElm: Element): void => {
 	const handleOrigClassAndStyle = (): void => {
 		if (getClasses(newElm).length > 0) {
-			newElm.setAttribute(context.options.attrKeyForSavingElementOrigClass, getClassName(newElm));
-			newElm.removeAttribute('class');
+			//ZUNIT - commented out
+			//newElm.setAttribute(context.options.attrKeyForSavingElementOrigClass, getClassName(newElm));
+			//newElm.removeAttribute('class');
 		}
 		if (newElm.getAttribute('style')) {
-			newElm.setAttribute(context.options.attrKeyForSavingElementOrigStyle, newElm.getAttribute('style') || '');
-			newElm.removeAttribute('style');
+			//ZUNIT - commented out
+			//newElm.setAttribute(context.options.attrKeyForSavingElementOrigStyle, newElm.getAttribute('style') || '');
+			//newElm.removeAttribute('style');
 		}
 	};
 	const handleRegularElmStyle = (): string => {
