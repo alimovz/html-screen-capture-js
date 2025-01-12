@@ -54,8 +54,9 @@ const handleElmCss = (context: CaptureContext, domElm: Element, newElm: Element)
 			//newElm.removeAttribute('class');
 		}
 		if (newElm.getAttribute('style')) {
-			newElm.setAttribute(context.options.attrKeyForSavingElementOrigStyle, newElm.getAttribute('style') || '');
-			newElm.removeAttribute('style');
+			//ZUNIT - commented out
+			// newElm.setAttribute(context.options.attrKeyForSavingElementOrigStyle, newElm.getAttribute('style') || '');
+			// newElm.removeAttribute('style');
 		}
 	};
 	const handleRegularElmStyle = (): string => {
