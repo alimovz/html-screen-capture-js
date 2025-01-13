@@ -41,8 +41,8 @@
         "compile": "tsc",
         "bundle-dev": "rollup -c --environment build:development",
         "bundle-prod": "rollup -c --environment build:production",
-        "bundle": "yarn bundle-dev && yarn bundle-prod",
-        "build": "yarn compile && yarn bundle",
+        "bundle": "npm run bundle-dev && npm run bundle-prod",
+        "build": "npm run compile && npm run bundle",
         "full": "yarn format && yarn lint && yarn build"
     },
     "husky": {
