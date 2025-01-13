@@ -100,7 +100,8 @@ const handleElmCss = (context: CaptureContext, domElm: Element, newElm: Element)
 	handleOrigClassAndStyle();
 	let classStr = handleRegularElmStyle();
 	classStr += handlePseudoElmsStyle();
-	newElm.setAttribute('class', classStr.trim());
+	//ZUNIT - commented out
+	//newElm.setAttribute('class', classStr.trim());
 };
 
 const getCanvasDataUrl = (context: CaptureContext, domElm: HTMLImageElement | HTMLCanvasElement): string => {
