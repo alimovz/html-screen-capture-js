@@ -146,14 +146,14 @@ const handleInputElement = (domElm: HTMLInputElement | HTMLTextAreaElement | HTM
 	}
 };
 
-const handleImageElement = (context: CaptureContext, domElm: HTMLImageElement, newElm: Element): void => {
-	if (context.shouldHandleImgDataUrl) {
-		const imgDataUrl = getCanvasDataUrl(context, domElm);
-		if (imgDataUrl) {
-			newElm.setAttribute('src', imgDataUrl);
-		}
-	}
-};
+// const handleImageElement = (context: CaptureContext, domElm: HTMLImageElement, newElm: Element): void => {
+// 	if (context.shouldHandleImgDataUrl) {
+// 		const imgDataUrl = getCanvasDataUrl(context, domElm);
+// 		if (imgDataUrl) {
+// 			newElm.setAttribute('src', imgDataUrl);
+// 		}
+// 	}
+// };
 
 const handleCanvasElement = (context: CaptureContext, domElm: HTMLCanvasElement, newElm: Element): void => {
 	const canvasDataUrl = getCanvasDataUrl(context, domElm);
@@ -184,7 +184,8 @@ const recursiveWalk = (context: CaptureContext, domElm: Element, newElm: Element
 		if (domElm instanceof HTMLInputElement || domElm instanceof HTMLTextAreaElement || domElm instanceof HTMLSelectElement) {
 			handleInputElement(domElm, newElm);
 		} else if (domElm instanceof HTMLImageElement) {
-			handleImageElement(context, domElm, newElm);
+			//ZUNIT - commented out
+			//handleImageElement(context, domElm, newElm);
 		} else if (domElm instanceof HTMLCanvasElement) {
 			handleCanvasElement(context, domElm, newElm);
 		}
