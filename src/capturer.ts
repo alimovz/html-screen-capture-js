@@ -59,47 +59,47 @@ const handleElmCss = (context: CaptureContext, domElm: Element, newElm: Element)
 			// newElm.removeAttribute('style');
 		}
 	};
-	const handleRegularElmStyle = (): string => {
-		let classStr = `${context.options.prefixForNewGeneratedClasses}0 `;
-		const computedStyle = getComputedStyle(domElm);
-		for (let i = 0; i < computedStyle.length; i++) {
-			const property = computedStyle.item(i);
-			const value = computedStyle.getPropertyValue(property);
-			if (value !== context.baseClass.get(property)) {
-				const mapKey = property + ':' + value;
-				let className: string = context.classMap.get(mapKey) || '';
-				if (!className) {
-					context.classCount++;
-					className = `${context.options.prefixForNewGeneratedClasses}${context.classCount}`;
-					context.classMap.set(mapKey, className);
-				}
-				classStr += className + ' ';
-			}
-		}
-		return classStr;
-	};
-	const handlePseudoElmsStyle = (): string => {
-		let classStr = '';
-		for (const pseudoType of ['::before', '::after']) {
-			const computedStyle = getComputedStyle(domElm, pseudoType);
-			if (!['none', 'normal'].includes(computedStyle.content)) {
-				context.pseudoClassCount++;
-				const className = `${context.options.prefixForNewGeneratedPseudoClasses}${context.pseudoClassCount}`;
-				classStr += className + ' ';
-				context.pseudoStyles.push(`.${className}${pseudoType}{`);
-				for (let i = 0; i < computedStyle.length; i++) {
-					const property = computedStyle.item(i);
-					const value = computedStyle.getPropertyValue(property);
-					context.pseudoStyles.push(`${property}:${value};`);
-				}
-				context.pseudoStyles.push('}');
-			}
-		}
-		return classStr;
-	};
+	// const handleRegularElmStyle = (): string => {
+	// 	let classStr = `${context.options.prefixForNewGeneratedClasses}0 `;
+	// 	const computedStyle = getComputedStyle(domElm);
+	// 	for (let i = 0; i < computedStyle.length; i++) {
+	// 		const property = computedStyle.item(i);
+	// 		const value = computedStyle.getPropertyValue(property);
+	// 		if (value !== context.baseClass.get(property)) {
+	// 			const mapKey = property + ':' + value;
+	// 			let className: string = context.classMap.get(mapKey) || '';
+	// 			if (!className) {
+	// 				context.classCount++;
+	// 				className = `${context.options.prefixForNewGeneratedClasses}${context.classCount}`;
+	// 				context.classMap.set(mapKey, className);
+	// 			}
+	// 			classStr += className + ' ';
+	// 		}
+	// 	}
+	// 	return classStr;
+	// };
+	// const handlePseudoElmsStyle = (): string => {
+	// 	let classStr = '';
+	// 	for (const pseudoType of ['::before', '::after']) {
+	// 		const computedStyle = getComputedStyle(domElm, pseudoType);
+	// 		if (!['none', 'normal'].includes(computedStyle.content)) {
+	// 			context.pseudoClassCount++;
+	// 			const className = `${context.options.prefixForNewGeneratedPseudoClasses}${context.pseudoClassCount}`;
+	// 			classStr += className + ' ';
+	// 			context.pseudoStyles.push(`.${className}${pseudoType}{`);
+	// 			for (let i = 0; i < computedStyle.length; i++) {
+	// 				const property = computedStyle.item(i);
+	// 				const value = computedStyle.getPropertyValue(property);
+	// 				context.pseudoStyles.push(`${property}:${value};`);
+	// 			}
+	// 			context.pseudoStyles.push('}');
+	// 		}
+	// 	}
+	// 	return classStr;
+	// };
 	handleOrigClassAndStyle();
-	let classStr = handleRegularElmStyle();
-	classStr += handlePseudoElmsStyle();
+	// let classStr = handleRegularElmStyle();
+	// classStr += handlePseudoElmsStyle();
 	//ZUNIT - commented out
 	//newElm.setAttribute('class', classStr.trim());
 };
@@ -257,7 +257,7 @@ const getHtmlObject = (context: CaptureContext): HTMLElement => {
 		recursiveWalk(context, context.doc.body, newBody, true);
 		newHtml.appendChild(newBody);
 	};
-	const appendNewStyle = (newHtml: Element): void => {
+	const appendNewStyle = (): void => {
 		const style = context.doc.createElement('style');
 		let cssText = `.${context.options.prefixForNewGeneratedClasses}0{`;
 		context.baseClass.forEach((v, k) => {
@@ -276,7 +276,7 @@ const getHtmlObject = (context: CaptureContext): HTMLElement => {
 	const newHtml = createNewHtml();
 	appendNewHead(newHtml);
 	appendNewBody(newHtml);
-	appendNewStyle(newHtml);
+	appendNewStyle();
 	return newHtml;
 };
 
